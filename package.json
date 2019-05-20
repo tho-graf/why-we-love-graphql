@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "kill-port": "sudo kill $(sudo lsof -t -i:4000)"
   },
   "dependencies": {
     "apollo-server": "^2.4.8",

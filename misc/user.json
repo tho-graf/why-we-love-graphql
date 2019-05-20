@@ -1,0 +1,10 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "Mary",
+      "city": "Berlin",
+      "about": "Software Developer, loves sport ..."
+    }
+  ]
+}

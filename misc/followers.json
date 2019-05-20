@@ -1,0 +1,16 @@
+{
+  "followers": [
+    {
+      "id": "2",
+      "name": "Alice",
+      "city": "New York",
+      "about": "Blogger. Nomade Life"
+    },
+    {
+      "id": "3",
+      "name": "John",
+      "city": "London",
+      "about": "❤❤❤ Algorithms ❤❤❤"
+    }
+  ]
+}

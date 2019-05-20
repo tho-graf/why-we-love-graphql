@@ -1,0 +1,18 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "publishedOn": "3/5/2019",
+      "title": "Learn GraphQL today",
+      "content": "Lorem ipsum dolor amet 90's post typewriter vinyl organic vegan DIY fixie sway yolo VHS",
+      "authorId": 1
+    },
+    {
+      "id": "2",
+      "publishedOn": "9/19/2018",
+      "title": "Top 10 Java Libraries/Frameworks in 2019",
+      "content": "Spring, jOOQ, Flyway...",
+      "authorId": 1
+    }
+  ]
+}

@@ -1,27 +1,52 @@
 import { ApolloServer, IResolvers } from "apollo-server";
 import { typeDefs } from "./type-defs";
-import { Book, books, authors, Author } from "./data";
+import { Post, posts, users, User, follower } from "./data";
 
 const resolvers: IResolvers = {
+  // All root queries
   Query: {
-    books: function(): Book[] {
-      return books;
+    posts: function(): Post[] {
+      return posts;
     },
-    authors: function(): Author[] {
-      return authors;
+    users: function(): User[] {
+      return users;
     },
-    book: function(_, { id }): Book {
-      return books.find(book => book.id == id);
+    user: function(_, args): User | undefined {
+      return users.find(user => user.id == args.id);
+    },
+    post: function(_, args): Post | undefined {
+      return posts.find(post => post.id == args.id);
     }
   },
-  Book: {
-    author: function({ authorId }: Book): Author {
-      return authors.find(author => author.id == authorId);
+
+  // Resolver for all relations of type "Post"
+  Post: {
+    author: function(post: Post): User {
+      return users.find(user => user.id == post.userId);
     }
   },
-  Author: {
-    books: function({ id: authorId }: Author): Book[] {
-      return books.filter(book => book.authorId == authorId);
+
+  // Resolver for all relations of type "User"
+  User: {
+    posts: function(user: User): Post[] {
+      return posts.filter(post => post.userId == user.id);
+    },
+
+    followers: function(user: User): User[] {
+      const followerList = follower[user.id];
+      if (!followerList) return [];
+
+      return followerList.map(followerId => users.find(user => user.id == followerId));
+    }
+  },
+
+  // All root mutations
+  Mutation: {
+    addUser: function(_, args): User {
+      const nextId = Math.max(...users.map(x => Number(x.id))) + 1;
+      const newUser: User = { id: String(nextId), name: args.name };
+      users.push(newUser);
+      return newUser;
     }
   }
 };
